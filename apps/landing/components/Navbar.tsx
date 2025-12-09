@@ -12,6 +12,7 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from '@/components/ui/resizable-navbar';
+import Image from 'next/image';
 
 export function KoshitsuNavbar() {
   const navItems = [
@@ -40,7 +41,13 @@ export function KoshitsuNavbar() {
           href="#"
           className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal"
         >
-          <MessageSquare className="h-6 w-6 text-primary" />
+          <Image
+            src="/koshitsu-logo-new.png"
+            alt="Koshitsu Logo"
+            width={40}
+            height={40}
+            className="object-contain"
+          />
           <span className="text-xl font-bold text-black dark:text-white">
             Koshitsu
           </span>
