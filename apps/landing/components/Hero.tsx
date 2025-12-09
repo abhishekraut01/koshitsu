@@ -1,13 +1,113 @@
-'use client';
+"use client";
 
-import { Users, Lock } from 'lucide-react';
+import { Users, Lock, MessageSquare, MessageCircle, Send, Shield } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { FloatingIcon } from './ui/FloatingIcon';
 
-export function Hero() {
+// Floating Icon Component
+
+// Animated Chat Bubble Icon
+function ChatBubbleIcon({ className = '', color = 'text-blue-500' }) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
+    <div className={`${className} ${color} drop-shadow-[0_8px_16px_rgba(59,130,246,0.4)]`}>
+      <MessageCircle className="w-full h-full" strokeWidth={1.5} />
+    </div>
+  );
+}
 
-      <div className="max-w-4xl mx-auto text-center">
+// Animated Message Icon
+function MessageIcon({ className = '', color = 'text-purple-500' }) {
+  return (
+    <div className={`${className} ${color} drop-shadow-[0_8px_16px_rgba(168,85,247,0.4)]`}>
+      <MessageSquare className="w-full h-full" strokeWidth={1.5} />
+    </div>
+  );
+}
+
+// Animated Send Icon
+function SendIcon({ className = '', color = 'text-green-500' }) {
+  return (
+    <div className={`${className} ${color} drop-shadow-[0_8px_16px_rgba(34,197,94,0.4)]`}>
+      <Send className="w-full h-full" strokeWidth={1.5} />
+    </div>
+  );
+}
+
+// Animated Shield Icon
+function ShieldIcon({ className = '', color = 'text-yellow-500' }) {
+  return (
+    <div className={`${className} ${color} drop-shadow-[0_8px_16px_rgba(234,179,8,0.4)]`}>
+      <Shield className="w-full h-full" strokeWidth={1.5} />
+    </div>
+  );
+}
+
+export default function Hero() {
+  return (
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 overflow-hidden">
+      
+      {/* Floating Chat Icons */}
+      <FloatingIcon
+        position={{ top: '120px', left: '80px' }}
+        parallaxStrength={0.03}
+        rotation={-15}
+        floatDuration={3}
+      >
+        <ChatBubbleIcon className="w-16 h-16 md:w-20 md:h-20" color="text-blue-500" />
+      </FloatingIcon>
+
+      <FloatingIcon
+        position={{ top: '200px', right: '100px' }}
+        parallaxStrength={0.025}
+        rotation={12}
+        floatDuration={3.5}
+        delay={0.5}
+      >
+        <MessageIcon className="w-14 h-14 md:w-16 md:h-16" color="text-purple-500" />
+      </FloatingIcon>
+
+      <FloatingIcon
+        position={{ bottom: '150px', left: '60px' }}
+        parallaxStrength={0.035}
+        rotation={-8}
+        floatDuration={2.8}
+        delay={1}
+      >
+        <SendIcon className="w-12 h-12 md:w-14 md:h-14" color="text-green-500" />
+      </FloatingIcon>
+
+      <FloatingIcon
+        position={{ bottom: '200px', right: '80px' }}
+        parallaxStrength={0.028}
+        rotation={18}
+        floatDuration={3.2}
+        delay={0.3}
+      >
+        <ShieldIcon className="w-16 h-16 md:w-18 md:h-18" color="text-yellow-500" />
+      </FloatingIcon>
+
+      {/* Small decorative icons for mobile */}
+      <FloatingIcon
+        position={{ top: '300px', left: '20px' }}
+        parallaxStrength={0.02}
+        rotation={-20}
+        floatDuration={4}
+        delay={0.8}
+      >
+        <MessageCircle className="w-8 h-8 text-blue-400/60" strokeWidth={1.5} />
+      </FloatingIcon>
+
+      <FloatingIcon
+        position={{ top: '400px', right: '30px' }}
+        parallaxStrength={0.022}
+        rotation={15}
+        floatDuration={3.6}
+        delay={1.2}
+      >
+        <MessageSquare className="w-10 h-10 text-purple-400/60" strokeWidth={1.5} />
+      </FloatingIcon>
+
+      <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

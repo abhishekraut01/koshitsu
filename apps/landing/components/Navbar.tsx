@@ -32,7 +32,7 @@ export function KoshitsuNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <Navbar className="fixed top-2">
+    <Navbar className="fixed top-2 left-0 right-0 z-50 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
       {/* Desktop Navigation */}
       <NavBody>
         {/* Logo */}

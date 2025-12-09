@@ -21,6 +21,7 @@ const itemVariants = {
 export function Features() {
   return (
     <div className="py-24 px-4 sm:px-6 lg:px-8">
+
       <motion.section
         id="features"
         className="max-w-7xl mx-auto mb-32"
