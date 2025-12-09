@@ -1,4 +1,5 @@
 {
+  "extends": "@repo/typescript-config/nextjs.json",
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -35,3 +36,25 @@
   "types": ["node"],
   "skipLibCheck": true
 }
+
+// {
+//   "extends": "@repo/typescript-config/nextjs.json",
+//   "compilerOptions": {
+//     "plugins": [
+//       {
+//         "name": "next"
+//       }
+//     ]
+//   },
+//   "baseUrl": ".",
+
+//   "include": [
+//     "lucide-react.d.ts",
+//     "**/*.ts",
+//     "**/*.tsx",
+//     "next-env.d.ts",
+//     "next.config.js",
+//     ".next/types/**/*.ts"
+//   ],
+//   "exclude": ["node_modules"]
+// }

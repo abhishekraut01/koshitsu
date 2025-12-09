@@ -1,1 +1,1 @@
-{"root":["./src/index.ts"],"version":"5.9.3"}
+{"root":["./src/index.ts","./src/services/chatroomservice.ts","./src/services/inmemorystore.ts","./src/services/joinroomservice.ts","./src/services/leaveroomservice.ts","./src/utils/checkauth.ts","./src/utils/safesend.ts"],"version":"5.9.3"}
