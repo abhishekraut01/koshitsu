@@ -56,7 +56,7 @@ export function Features() {
 
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <Database className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                <Database className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                 <div>
                   <p className="font-semibold">Stored Messages</p>
                   <p className="text-sm text-muted-foreground">
@@ -65,7 +65,7 @@ export function Features() {
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Eye className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                <Eye className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                 <div>
                   <p className="font-semibold">Username Only</p>
                   <p className="text-sm text-muted-foreground">
@@ -74,7 +74,7 @@ export function Features() {
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Zap className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                <Zap className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                 <div>
                   <p className="font-semibold">Text-Only Chat</p>
                   <p className="text-sm text-muted-foreground">
@@ -102,7 +102,7 @@ export function Features() {
 
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <Trash2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                <Trash2 className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                 <div>
                   <p className="font-semibold">Auto-Delete</p>
                   <p className="text-sm text-muted-foreground">
@@ -111,7 +111,7 @@ export function Features() {
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Clock className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                <Clock className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                 <div>
                   <p className="font-semibold">RAM Only</p>
                   <p className="text-sm text-muted-foreground">
@@ -120,7 +120,7 @@ export function Features() {
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Shield className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                <Shield className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                 <div>
                   <p className="font-semibold">Zero Retention</p>
                   <p className="text-sm text-muted-foreground">
@@ -191,7 +191,7 @@ export function Features() {
             <Lock className="h-8 w-8 text-primary mb-4" />
             <h3 className="text-xl font-semibold mb-2">Private by Design</h3>
             <p className="text-sm text-muted-foreground">
-              We can't read your messages. We don't track you. We don't sell your data.
+              We can&apos;t read your messages. We don&apos;t track you. We don&apos;t sell your data.
             </p>
           </motion.div>
 
@@ -202,7 +202,7 @@ export function Features() {
             <Database className="h-8 w-8 text-primary mb-4" />
             <h3 className="text-xl font-semibold mb-2">Minimal Data Storage</h3>
             <p className="text-sm text-muted-foreground">
-              We only store what's necessary for persistent groups. Private rooms? Nothing.
+              We only store what&apos;s necessary for persistent groups. Private rooms? Nothing.
             </p>
           </motion.div>
 
@@ -213,7 +213,7 @@ export function Features() {
             <Zap className="h-8 w-8 text-primary mb-4" />
             <h3 className="text-xl font-semibold mb-2">Open Source</h3>
             <p className="text-sm text-muted-foreground">
-              Don't trust, verify. Our code is open for audit by security researchers worldwide.
+              Don&apos;t trust, verify. Our code is open for audit by security researchers worldwide.
             </p>
           </motion.div>
         </div>
