@@ -1,73 +1,100 @@
 'use client';
 
 import { ThemeToggle } from './ThemeToggle';
-import { MessageSquare, Menu, X } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 import { useState } from 'react';
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  MobileNavHeader,
+  MobileNavToggle,
+  MobileNavMenu,
+} from '@/components/ui/resizable-navbar';
 
-export function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+export function KoshitsuNavbar() {
+  const navItems = [
+    {
+      name: 'Features',
+      link: '#features',
+    },
+    {
+      name: 'Security',
+      link: '#security',
+    },
+    {
+      name: 'About',
+      link: '#about',
+    },
+  ];
+
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center gap-2">
+    <Navbar className="fixed top-2">
+      {/* Desktop Navigation */}
+      <NavBody>
+        {/* Logo */}
+        <a
+          href="#"
+          className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal"
+        >
+          <MessageSquare className="h-6 w-6 text-primary" />
+          <span className="text-xl font-bold text-black dark:text-white">
+            Koshitsu
+          </span>
+        </a>
+
+        {/* Nav Items */}
+        <NavItems items={navItems} />
+
+        {/* Theme Toggle */}
+        <div className="flex items-center gap-4">
+          <ThemeToggle />
+        </div>
+      </NavBody>
+
+      {/* Mobile Navigation */}
+      <MobileNav>
+        <MobileNavHeader>
+          {/* Mobile Logo */}
+          <a
+            href="#"
+            className="relative z-20 flex items-center space-x-2 px-2 py-1"
+          >
             <MessageSquare className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold">Koshitsu</span>
-          </div>
+            <span className="text-xl font-bold text-black dark:text-white">
+              Koshitsu
+            </span>
+          </a>
 
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-sm font-medium hover:text-primary transition-colors">
-              Features
-            </a>
-            <a href="#security" className="text-sm font-medium hover:text-primary transition-colors">
-              Security
-            </a>
-            <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">
-              About
-            </a>
+          {/* Mobile Menu Controls */}
+          <div className="flex items-center gap-2">
             <ThemeToggle />
+            <MobileNavToggle
+              isOpen={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            />
           </div>
+        </MobileNavHeader>
 
-          <div className="md:hidden flex items-center gap-2">
-            <ThemeToggle />
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg hover:bg-secondary transition-colors"
-            >
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border bg-background">
-          <div className="px-4 py-4 space-y-3">
+        <MobileNavMenu
+          isOpen={isMobileMenuOpen}
+          onClose={() => setIsMobileMenuOpen(false)}
+        >
+          {navItems.map((item, idx) => (
             <a
-              href="#features"
-              className="block py-2 text-sm font-medium hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
+              key={`mobile-link-${idx}`}
+              href={item.link}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="relative text-neutral-600 dark:text-neutral-300 hover:text-primary transition-colors"
             >
-              Features
+              <span className="block text-base font-medium">{item.name}</span>
             </a>
-            <a
-              href="#security"
-              className="block py-2 text-sm font-medium hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Security
-            </a>
-            <a
-              href="#about"
-              className="block py-2 text-sm font-medium hover:text-primary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              About
-            </a>
-          </div>
-        </div>
-      )}
-    </nav>
+          ))}
+        </MobileNavMenu>
+      </MobileNav>
+    </Navbar>
   );
 }
