@@ -74,7 +74,7 @@ export default function Hero() {
       
       {/* Floating Chat Icons - Smaller Sizes */}
       <FloatingIcon
-        position={{ top: '120px', left: '80px' }}
+        position={{ top: '120px', left: '350px' }}
         parallaxStrength={0.03}
         rotation={-15}
         floatDuration={3}
@@ -87,7 +87,7 @@ export default function Hero() {
       </FloatingIcon>
 
       <FloatingIcon
-        position={{ top: '150px', right: '100px' }}
+        position={{ top: '150px', right: '350px' }}
         parallaxStrength={0.025}
         rotation={12}
         floatDuration={3.5}
@@ -101,7 +101,8 @@ export default function Hero() {
       </FloatingIcon>
 
       <FloatingIcon
-        position={{ bottom: '180px', left: '60px' }}
+        position={{ bottom: '180px', left: '300px' }}
+        
         parallaxStrength={0.035}
         rotation={-8}
         floatDuration={2.8}
@@ -115,7 +116,7 @@ export default function Hero() {
       </FloatingIcon>
 
       <FloatingIcon
-        position={{ bottom: '200px', right: '80px' }}
+        position={{ bottom: '200px', right: '350px' }}
         parallaxStrength={0.028}
         rotation={18}
         floatDuration={3.2}
@@ -128,28 +129,9 @@ export default function Hero() {
         />
       </FloatingIcon>
 
-      {/* Small decorative icons */}
-      <FloatingIcon
-        position={{ top: '280px', left: '30px' }}
-        parallaxStrength={0.02}
-        rotation={-20}
-        floatDuration={4}
-        delay={0.8}
-        className="hidden lg:block"
-      >
-        <MessageCircle className="w-6 h-6 text-blue-400/50" strokeWidth={1.5} />
-      </FloatingIcon>
 
-      <FloatingIcon
-        position={{ top: '350px', right: '40px' }}
-        parallaxStrength={0.022}
-        rotation={15}
-        floatDuration={3.6}
-        delay={1.2}
-        className="hidden lg:block"
-      >
-        <MessageSquare className="w-7 h-7 text-purple-400/50" strokeWidth={1.5} />
-      </FloatingIcon>
+
+
 
       {/* Mobile visible icons - smaller */}
       <FloatingIcon
