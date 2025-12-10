@@ -15,10 +15,18 @@ function FloatingIcon({
   rotation = 0,
   delay = 0,
   className = '',
+}: {
+  children: React.ReactNode;
+  position?: React.CSSProperties;
+  parallaxStrength?: number;
+  floatDuration?: number;
+  rotation?: number;
+  delay?: number;
+  className?: string;
 }) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  const handleMouseMove = (event) => {
+  const handleMouseMove = (event: MouseEvent) => {
     const { clientX, clientY } = event;
     setMousePosition({ x: clientX, y: clientY });
   };
@@ -38,13 +46,11 @@ function FloatingIcon({
       transition: {
         y: {
           duration: floatDuration,
-          ease: 'easeInOut',
           repeat: Infinity,
           delay: delay,
         },
         opacity: {
           duration: 0.8,
-          ease: 'easeInOut',
         },
       },
     },

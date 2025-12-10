@@ -75,7 +75,15 @@ const testimonials = {
   ],
 };
 
-function TestimonialCard({ testimonial, index }) {
+type Testimonial = {
+  name: string;
+  role: string;
+  company: string;
+  content: string;
+  avatar: string;
+};
+
+function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
     <motion.div
       whileHover={{ 
@@ -116,7 +124,7 @@ function TestimonialCard({ testimonial, index }) {
   );
 }
 
-function TestimonialColumn({ items, direction = 'down' }) {
+function TestimonialColumn({ items, direction = 'down' }: { items: Testimonial[]; direction?: 'up' | 'down' }) {
   const duplicatedItems = [...items, ...items];
   
   return (
@@ -133,7 +141,7 @@ function TestimonialColumn({ items, direction = 'down' }) {
         className="space-y-4"
       >
         {duplicatedItems.map((testimonial, idx) => (
-          <TestimonialCard index={idx} key={idx} testimonial={testimonial} />
+          <TestimonialCard key={idx} testimonial={testimonial} />
         ))}
       </motion.div>
     </div>
