@@ -148,17 +148,23 @@ export default function TestimonialsSection() {
       
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
-            Some love from 🩵
-            <br />
-            our Users!
+        <motion.div  className="text-center mb-16">
+          <motion.div
+            initial={{ scale: 0.5, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-block mb-4"
+          >
+            <span className="px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-yellow-400 text-sm font-medium">
+                Testimonials
+            </span>
+          </motion.div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold  bg-gradient-to-b from-white to-neutral-400 bg-clip-text text-transparent">
+            Some love from
+          </h2>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-b from-white to-neutral-400 bg-clip-text text-transparent">
+            our users
           </h2>
         </motion.div>
 

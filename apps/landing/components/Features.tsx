@@ -1,5 +1,5 @@
-'use client';
-
+"use client";
+import React from 'react';
 import { Users, Lock, Database, Zap, Shield, Eye, Clock, Trash2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -15,208 +15,236 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  },
 };
 
-export function Features() {
+export  function Features() {
   return (
-    <div className="py-24 px-4 sm:px-6 lg:px-8">
+    <div className="relative py-24 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden">
+      {/* Background gradients */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
+      </div>
 
+      {/* Two Ways to Chat Section */}
       <motion.section
         id="features"
-        className="max-w-7xl mx-auto mb-32"
+        className="relative max-w-7xl mx-auto mb-32"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
       >
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          <motion.div
+            initial={{ scale: 0.5, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-block mb-4"
+          >
+            <span className="px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm font-medium">
+              Features
+            </span>
+          </motion.div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-b from-white to-neutral-400 bg-clip-text text-transparent">
             Two Ways to Chat
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
             Choose the right level of privacy for every conversation
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
+          {/* Persistent Group Chats Card */}
           <motion.div
             variants={itemVariants}
-            className="p-8 rounded-2xl bg-secondary/50 border border-border hover:border-primary/50 transition-all duration-300"
+            whileHover={{ y: -8 }}
+            transition={{ duration: 0.3 }}
+            className="group relative p-8 rounded-3xl bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border border-neutral-800 hover:border-blue-500/30 transition-all duration-500 overflow-hidden"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 bg-primary/10 rounded-lg">
-                <Users className="h-6 w-6 text-primary" />
+            {/* Gradient overlay on hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            {/* Animated corner accent */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"></div>
+
+            <div className="relative z-10">
+              <div className="flex items-center gap-4 mb-6">
+                <motion.div 
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: 'spring', stiffness: 400 }}
+                  className="p-4 bg-gradient-to-br from-blue-500/20 to-blue-600/10 rounded-2xl border border-blue-500/20 group-hover:border-blue-500/40 transition-colors"
+                >
+                  <Users className="h-7 w-7 text-blue-400" />
+                </motion.div>
+                <h3 className="text-2xl font-bold text-white">Persistent Group Chats</h3>
               </div>
-              <h3 className="text-2xl font-bold">Persistent Group Chats</h3>
+
+              <p className="text-neutral-400 mb-8 leading-relaxed">
+                Like WhatsApp groups, but better. Messages are stored securely in the database for ongoing conversations.
+              </p>
+
+              <ul className="space-y-5">
+                {[
+                  { icon: Database, title: 'Stored Messages', desc: 'Access your conversation history anytime' },
+                  { icon: Eye, title: 'Username Only', desc: 'No phone numbers, no personal identifiers' },
+                  { icon: Zap, title: 'Text-Only Chat', desc: 'Fast, focused messaging for v1' },
+                ].map((item, idx) => (
+                  <motion.li
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    whileHover={{ x: 5 }}
+                    className="flex items-start gap-4 group/item"
+                  >
+                    <div className="p-2 bg-blue-500/10 rounded-lg group-hover/item:bg-blue-500/20 transition-colors">
+                      <item.icon className="h-5 w-5 text-blue-400 shrink-0" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-white mb-1">{item.title}</p>
+                      <p className="text-sm text-neutral-400 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </motion.li>
+                ))}
+              </ul>
             </div>
-
-            <p className="text-muted-foreground mb-6">
-              Like WhatsApp groups, but better. Messages are stored securely in the database for ongoing conversations.
-            </p>
-
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <Database className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <div>
-                  <p className="font-semibold">Stored Messages</p>
-                  <p className="text-sm text-muted-foreground">
-                    Access your conversation history anytime
-                  </p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <Eye className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <div>
-                  <p className="font-semibold">Username Only</p>
-                  <p className="text-sm text-muted-foreground">
-                    No phone numbers, no personal identifiers
-                  </p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <Zap className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <div>
-                  <p className="font-semibold">Text-Only Chat</p>
-                  <p className="text-sm text-muted-foreground">
-                    Fast, focused messaging for v1
-                  </p>
-                </div>
-              </li>
-            </ul>
           </motion.div>
 
+          {/* Ephemeral Private Rooms Card */}
           <motion.div
             variants={itemVariants}
-            className="p-8 rounded-2xl bg-secondary/50 border border-border hover:border-primary/50 transition-all duration-300"
+            whileHover={{ y: -8 }}
+            transition={{ duration: 0.3 }}
+            className="group relative p-8 rounded-3xl bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border border-neutral-800 hover:border-purple-500/30 transition-all duration-500 overflow-hidden"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 bg-primary/10 rounded-lg">
-                <Lock className="h-6 w-6 text-primary" />
+            {/* Gradient overlay on hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            {/* Animated corner accent */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"></div>
+
+            <div className="relative z-10">
+              <div className="flex items-center gap-4 mb-6">
+                <motion.div 
+                  whileHover={{ scale: 1.1, rotate: -5 }}
+                  transition={{ type: 'spring', stiffness: 400 }}
+                  className="p-4 bg-gradient-to-br from-purple-500/20 to-purple-600/10 rounded-2xl border border-purple-500/20 group-hover:border-purple-500/40 transition-colors"
+                >
+                  <Lock className="h-7 w-7 text-purple-400" />
+                </motion.div>
+                <h3 className="text-2xl font-bold text-white">Ephemeral Private Rooms</h3>
               </div>
-              <h3 className="text-2xl font-bold">Ephemeral Private Rooms</h3>
+
+              <p className="text-neutral-400 mb-8 leading-relaxed">
+                For truly private conversations. Messages exist only in RAM and disappear forever when you leave.
+              </p>
+
+              <ul className="space-y-5">
+                {[
+                  { icon: Trash2, title: 'Auto-Delete', desc: 'Room vanishes when the last user leaves' },
+                  { icon: Clock, title: 'RAM Only', desc: 'Messages never touch the disk' },
+                  { icon: Shield, title: 'Zero Retention', desc: 'No logs, no metadata, no trace' },
+                ].map((item, idx) => (
+                  <motion.li
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    whileHover={{ x: 5 }}
+                    className="flex items-start gap-4 group/item"
+                  >
+                    <div className="p-2 bg-purple-500/10 rounded-lg group-hover/item:bg-purple-500/20 transition-colors">
+                      <item.icon className="h-5 w-5 text-purple-400 shrink-0" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-white mb-1">{item.title}</p>
+                      <p className="text-sm text-neutral-400 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </motion.li>
+                ))}
+              </ul>
             </div>
-
-            <p className="text-muted-foreground mb-6">
-              For truly private conversations. Messages exist only in RAM and disappear forever when you leave.
-            </p>
-
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <Trash2 className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <div>
-                  <p className="font-semibold">Auto-Delete</p>
-                  <p className="text-sm text-muted-foreground">
-                    Room vanishes when the last user leaves
-                  </p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <Clock className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <div>
-                  <p className="font-semibold">RAM Only</p>
-                  <p className="text-sm text-muted-foreground">
-                    Messages never touch the disk
-                  </p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <Shield className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <div>
-                  <p className="font-semibold">Zero Retention</p>
-                  <p className="text-sm text-muted-foreground">
-                    No logs, no metadata, no trace
-                  </p>
-                </div>
-              </li>
-            </ul>
           </motion.div>
         </div>
       </motion.section>
 
+      {/* Security First Section */}
       <motion.section
         id="security"
-        className="max-w-7xl mx-auto"
+        className="relative max-w-7xl mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
       >
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          <motion.div
+            initial={{ scale: 0.5, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-block mb-4"
+          >
+            <span className="px-4 py-1.5 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm font-medium">
+              Security
+            </span>
+          </motion.div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-b from-white to-neutral-400 bg-clip-text text-transparent">
             Security First
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
             Your privacy is not negotiable
           </p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <motion.div
-            variants={itemVariants}
-            className="p-6 rounded-xl bg-muted/50 border border-border"
-          >
-            <Shield className="h-8 w-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">End-to-End Encryption</h3>
-            <p className="text-sm text-muted-foreground">
-              All messages are encrypted in transit and at rest. Only you and your recipients can read them.
-            </p>
-          </motion.div>
+          {[
+            { icon: Shield, title: 'End-to-End Encryption', desc: 'All messages are encrypted in transit and at rest. Only you and your recipients can read them.', color: 'blue' },
+            { icon: Eye, title: 'No Phone Numbers', desc: 'Create an account with just a username. No phone number, no email required.', color: 'purple' },
+            { icon: Trash2, title: 'Zero-Retention Chats', desc: 'Ephemeral rooms leave no trace. The server retains nothing after you disconnect.', color: 'green' },
+            { icon: Lock, title: 'Private by Design', desc: "We can't read your messages. We don't track you. We don't sell your data.", color: 'yellow' },
+            { icon: Database, title: 'Minimal Data Storage', desc: "We only store what's necessary for persistent groups. Private rooms? Nothing.", color: 'red' },
+            { icon: Zap, title: 'Open Source', desc: "Don't trust, verify. Our code is open for audit by security researchers worldwide.", color: 'indigo' },
+          ].map((item, idx) => (
+            <motion.div
+              key={idx}
+              variants={itemVariants}
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+              className="group relative p-7 rounded-2xl bg-gradient-to-br from-neutral-900/80 to-neutral-950/80 border border-neutral-800 hover:border-neutral-700 transition-all duration-300 overflow-hidden"
+            >
+              {/* Hover gradient overlay */}
+              <div className={`absolute inset-0 bg-gradient-to-br from-${item.color}-500/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+              
+              <div className="relative z-10">
+                <motion.div
+                  whileHover={{ rotate: 360, scale: 1.1 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <item.icon className={`h-9 w-9 text-${item.color}-400 mb-5`} />
+                </motion.div>
+                <h3 className="text-xl font-semibold mb-3 text-white">{item.title}</h3>
+                <p className="text-sm text-neutral-400 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
 
-          <motion.div
-            variants={itemVariants}
-            className="p-6 rounded-xl bg-muted/50 border border-border"
-          >
-            <Eye className="h-8 w-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">No Phone Numbers</h3>
-            <p className="text-sm text-muted-foreground">
-              Create an account with just a username. No phone number, no email required.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={itemVariants}
-            className="p-6 rounded-xl bg-muted/50 border border-border"
-          >
-            <Trash2 className="h-8 w-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Zero-Retention Chats</h3>
-            <p className="text-sm text-muted-foreground">
-              Ephemeral rooms leave no trace. The server retains nothing after you disconnect.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={itemVariants}
-            className="p-6 rounded-xl bg-muted/50 border border-border"
-          >
-            <Lock className="h-8 w-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Private by Design</h3>
-            <p className="text-sm text-muted-foreground">
-              We can&apos;t read your messages. We don&apos;t track you. We don&apos;t sell your data.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={itemVariants}
-            className="p-6 rounded-xl bg-muted/50 border border-border"
-          >
-            <Database className="h-8 w-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Minimal Data Storage</h3>
-            <p className="text-sm text-muted-foreground">
-              We only store what&apos;s necessary for persistent groups. Private rooms? Nothing.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={itemVariants}
-            className="p-6 rounded-xl bg-muted/50 border border-border"
-          >
-            <Zap className="h-8 w-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Open Source</h3>
-            <p className="text-sm text-muted-foreground">
-              Don&apos;t trust, verify. Our code is open for audit by security researchers worldwide.
-            </p>
-          </motion.div>
+              {/* Bottom accent line */}
+              <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-${item.color}-500/0 via-${item.color}-500/50 to-${item.color}-500/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
+            </motion.div>
+          ))}
         </div>
       </motion.section>
     </div>
