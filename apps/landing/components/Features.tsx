@@ -3,6 +3,7 @@ import React from 'react';
 import { Users, Lock, Database, Zap, Shield, Eye, Clock, Trash2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { EncryptedText } from './ui/Encrypted-text';
+import { MagicCard } from './ui/magic-card';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -182,6 +183,7 @@ export function Features() {
       </motion.section>
 
       {/* Security First Section */}
+
       <motion.section
         id="security"
         className="relative max-w-7xl mx-auto"
@@ -222,28 +224,33 @@ export function Features() {
             { icon: Database, title: 'Minimal Data Storage', desc: "We only store what's necessary for persistent groups. Private rooms? Nothing.", color: 'red' },
             { icon: Zap, title: 'Open Source', desc: "Don't trust, verify. Our code is open for audit by security researchers worldwide.", color: 'indigo' },
           ].map((item, idx) => (
-            <motion.div
-              key={idx}
-              variants={itemVariants}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="group relative p-7 rounded-2xl bg-linear-to-br from-neutral-900/80 to-neutral-950/80 border border-neutral-800 hover:border-neutral-700 transition-all duration-300 overflow-hidden"
+            <MagicCard key={idx} gradientColor={"#262626" }
+              className="p-0 rounded-2xl"
             >
-              {/* Hover gradient overlay */}
-              <div className={`absolute inset-0 bg-linear-to-br from-${item.color}-500/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+              <motion.div
 
-              <div className="relative z-10">
-                <motion.div>
-                  <item.icon className={`h-9 w-9 text-${item.color}-400 mb-5`} />
-                </motion.div>
-                <h3 className="text-xl font-semibold mb-3 text-white">{item.title}</h3>
-                <p className="text-sm text-neutral-400 leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
+                variants={itemVariants}
 
-              {/* Bottom accent line */}
-              <div className={`absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-${item.color}-500/0 via-${item.color}-500/50 to-${item.color}-500/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
-            </motion.div>
+                className="group relative p-7  bg-linear-to-br   transition-all duration-300 overflow-hidden"
+              >
+                {/* Hover gradient overlay */}
+                <div className={`absolute inset-0 bg-linear-to-br from-${item.color}-500/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+
+                <div className="relative z-10">
+                  <motion.div>
+                    <item.icon className={`h-9 w-9 text-${item.color}-400 mb-5`} />
+                  </motion.div>
+                  <h3 className="text-xl font-semibold mb-3 text-white">{item.title}</h3>
+                  <p className="text-sm text-neutral-400 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+
+                {/* Bottom accent line */}
+                <div className={`absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-${item.color}-500/0 via-${item.color}-500/50 to-${item.color}-500/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
+              </motion.div>
+            </MagicCard>
+
           ))}
         </div>
       </motion.section>
