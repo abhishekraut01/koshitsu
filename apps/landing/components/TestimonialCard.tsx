@@ -83,10 +83,10 @@ function TestimonialCard({ testimonial, index }) {
         boxShadow: "0 20px 60px rgba(59, 130, 246, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)"
       }}
       transition={{ duration: 0.3 }}
-      className="bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 backdrop-blur-xl rounded-2xl p-6 border border-neutral-800/50 hover:border-blue-900/30 transition-all duration-300 shadow-xl relative overflow-hidden group"
+      className="bg-linear-to-br from-neutral-900/90 to-neutral-950/90 backdrop-blur-xl rounded-2xl p-6 border border-neutral-800/50 hover:border-blue-900/30 transition-all duration-300 shadow-xl relative overflow-hidden group"
     >
       {/* Subtle gradient overlay on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] to-purple-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="absolute inset-0 bg-linear-to-br from-blue-500/2 to-purple-500/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       
       <div className="relative z-10">
         <p className="text-neutral-300 text-[15px] leading-relaxed mb-6">
@@ -98,7 +98,7 @@ function TestimonialCard({ testimonial, index }) {
             alt={testimonial.name}
             width={40}
             height={40}
-            className="w-11 h-11 rounded-full bg-neutral-800 ring-2 ring-neutral-700/50 group-hover:ring-blue-900/40 transition-all duration-300 flex-shrink-0"
+            className="w-11 h-11 rounded-full bg-neutral-800 ring-2 ring-neutral-700/50 group-hover:ring-blue-900/40 transition-all duration-300 shrink-0"
           />
 
           <div className="flex-1 min-w-0">
@@ -111,7 +111,7 @@ function TestimonialCard({ testimonial, index }) {
       </div>
 
       {/* Corner accent */}
-      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
     </motion.div>
   );
 }
@@ -133,7 +133,7 @@ function TestimonialColumn({ items, direction = 'down' }) {
         className="space-y-4"
       >
         {duplicatedItems.map((testimonial, idx) => (
-          <TestimonialCard key={idx} testimonial={testimonial} />
+          <TestimonialCard index={idx} key={idx} testimonial={testimonial} />
         ))}
       </motion.div>
     </div>
@@ -144,7 +144,7 @@ export default function TestimonialsSection() {
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-black to-neutral-950 opacity-50"></div>
+      <div className="absolute inset-0 bg-linear-to-b from-neutral-950 via-black to-neutral-950 opacity-50"></div>
       
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
@@ -160,10 +160,10 @@ export default function TestimonialsSection() {
                 Testimonials
             </span>
           </motion.div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold  bg-gradient-to-b from-white to-neutral-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold  bg-linear-to-b from-white to-neutral-400 bg-clip-text text-transparent">
             Some love from
           </h2>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-b from-white to-neutral-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-linear-to-b from-white to-neutral-400 bg-clip-text text-transparent">
             our users
           </h2>
         </motion.div>
@@ -201,10 +201,10 @@ export default function TestimonialsSection() {
           </motion.div>
 
           {/* Top Gradient Fade */}
-          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black to-transparent pointer-events-none z-10"></div>
+          <div className="absolute inset-x-0 top-0 h-24 bg-linear-to-b from-black to-transparent pointer-events-none z-10"></div>
           
           {/* Bottom Gradient Fade */}
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black to-transparent pointer-events-none z-10"></div>
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-black to-transparent pointer-events-none z-10"></div>
         </div>
       </div>
 

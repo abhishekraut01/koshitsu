@@ -15,17 +15,17 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1]
+      duration: 0.2,
+      ease: "easeInOut"
     }
   },
 };
 
-export  function Features() {
+export function Features() {
   return (
     <div className="relative py-24 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden">
       {/* Background gradients */}
@@ -69,20 +69,20 @@ export  function Features() {
             variants={itemVariants}
             whileHover={{ y: -8 }}
             transition={{ duration: 0.3 }}
-            className="group relative p-8 rounded-3xl bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border border-neutral-800 hover:border-blue-500/30 transition-all duration-500 overflow-hidden"
+            className="group relative p-8 rounded-3xl bg-linear-to-br from-neutral-900/90 to-neutral-950/90 border border-neutral-800 hover:border-blue-500/30 transition-all duration-500 overflow-hidden"
           >
             {/* Gradient overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            
+            <div className="absolute inset-0 bg-linear-to-br from-blue-500/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
             {/* Animated corner accent */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"></div>
 
             <div className="relative z-10">
               <div className="flex items-center gap-4 mb-6">
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: 'spring', stiffness: 400 }}
-                  className="p-4 bg-gradient-to-br from-blue-500/20 to-blue-600/10 rounded-2xl border border-blue-500/20 group-hover:border-blue-500/40 transition-colors"
+                  className="p-4 bg-linear-to-br from-blue-500/20 to-blue-600/10 rounded-2xl border border-blue-500/20 group-hover:border-blue-500/40 transition-colors"
                 >
                   <Users className="h-7 w-7 text-blue-400" />
                 </motion.div>
@@ -126,20 +126,20 @@ export  function Features() {
             variants={itemVariants}
             whileHover={{ y: -8 }}
             transition={{ duration: 0.3 }}
-            className="group relative p-8 rounded-3xl bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border border-neutral-800 hover:border-purple-500/30 transition-all duration-500 overflow-hidden"
+            className="group relative p-8 rounded-3xl bg-linear-to-br from-neutral-900/90 to-neutral-950/90 border border-neutral-800 hover:border-purple-500/30 transition-all duration-500 overflow-hidden"
           >
             {/* Gradient overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            
+            <div className="absolute inset-0 bg-linear-to-br from-purple-500/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
             {/* Animated corner accent */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"></div>
 
             <div className="relative z-10">
               <div className="flex items-center gap-4 mb-6">
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.1, rotate: -5 }}
                   transition={{ type: 'spring', stiffness: 400 }}
-                  className="p-4 bg-gradient-to-br from-purple-500/20 to-purple-600/10 rounded-2xl border border-purple-500/20 group-hover:border-purple-500/40 transition-colors"
+                  className="p-4 bg-linear-to-br from-purple-500/20 to-purple-600/10 rounded-2xl border border-purple-500/20 group-hover:border-purple-500/40 transition-colors"
                 >
                   <Lock className="h-7 w-7 text-purple-400" />
                 </motion.div>
@@ -201,7 +201,7 @@ export  function Features() {
               Security
             </span>
           </motion.div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-b from-white to-neutral-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-linear-to-b from-white to-neutral-400 bg-clip-text text-transparent">
             Security First
           </h2>
           <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
@@ -222,17 +222,13 @@ export  function Features() {
               key={idx}
               variants={itemVariants}
               whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-              className="group relative p-7 rounded-2xl bg-gradient-to-br from-neutral-900/80 to-neutral-950/80 border border-neutral-800 hover:border-neutral-700 transition-all duration-300 overflow-hidden"
+              className="group relative p-7 rounded-2xl bg-linear-to-br from-neutral-900/80 to-neutral-950/80 border border-neutral-800 hover:border-neutral-700 transition-all duration-300 overflow-hidden"
             >
               {/* Hover gradient overlay */}
-              <div className={`absolute inset-0 bg-gradient-to-br from-${item.color}-500/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-              
+              <div className={`absolute inset-0 bg-linear-to-br from-${item.color}-500/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+
               <div className="relative z-10">
-                <motion.div
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
-                >
+                <motion.div>
                   <item.icon className={`h-9 w-9 text-${item.color}-400 mb-5`} />
                 </motion.div>
                 <h3 className="text-xl font-semibold mb-3 text-white">{item.title}</h3>
@@ -242,7 +238,7 @@ export  function Features() {
               </div>
 
               {/* Bottom accent line */}
-              <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-${item.color}-500/0 via-${item.color}-500/50 to-${item.color}-500/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
+              <div className={`absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-${item.color}-500/0 via-${item.color}-500/50 to-${item.color}-500/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
             </motion.div>
           ))}
         </div>
