@@ -3,6 +3,7 @@ import Hero  from '@/components/Hero';
 import { Features } from '@/components/Features';
 import { Footer } from '@/components/Footer';
 import { Spotlight } from '@/components/ui/spotlight-new';
+import TestimonialsSection from '@/components/TestimonialCard';
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
  
         <Hero />
         <Features />
+        <TestimonialsSection />
 
       </main>
 
