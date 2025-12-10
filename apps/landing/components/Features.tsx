@@ -2,6 +2,7 @@
 import React from 'react';
 import { Users, Lock, Database, Zap, Shield, Eye, Clock, Trash2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { EncryptedText } from './ui/encrypted-text';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -204,9 +205,12 @@ export function Features() {
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-linear-to-b from-white to-neutral-400 bg-clip-text text-transparent">
             Security First
           </h2>
-          <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
-            Your privacy is not negotiable
-          </p>
+          <EncryptedText
+            text="Your privacy is not negotiable"
+            encryptedClassName="text-lg text-neutral-400 max-w-2xl mx-auto"
+            revealedClassName="dark:text-white text-black"
+            revealDelayMs={50}
+          />
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
