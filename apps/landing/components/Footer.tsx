@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { MessageSquare, Github, Twitter, Linkedin, Mail, Heart, Shield, Lock, Zap, Users } from 'lucide-react';
+import {  Github, Twitter, Linkedin, Mail, Heart, Shield, Lock, Zap, Users } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 

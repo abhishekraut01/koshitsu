@@ -2,7 +2,7 @@
 import React from 'react';
 import { Users, Lock, Database, Zap, Shield, Eye, Clock, Trash2 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { EncryptedText } from './ui/encrypted-text';
+import { EncryptedText } from './ui/Encrypted-text';
 
 const containerVariants = {
   hidden: { opacity: 0 },
