@@ -1,37 +1,37 @@
-FROM node:20-bookworm-slim AS base
+# Base image with Node.js and pnpm
+FROM node:20-alpine AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN apk add --no-cache libc6-compat && \
+    corepack enable && \
+    pnpm install turbo --global
 
+# Pruning stage - creates an optimized monorepo subset
+FROM base AS pruner
 WORKDIR /app
-
-ENV PNPM_HOME="/usr/local/share/pnpm"
-ENV PATH="${PNPM_HOME}:${PATH}"
-RUN corepack enable
-
-FROM base AS deps
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY apps/wsBackend/package.json ./apps/wsBackend/package.json
-COPY apps/httpBackend/package.json ./apps/httpBackend/package.json
-COPY apps/web/package.json ./apps/web/package.json
-COPY apps/landing/package.json ./apps/landing/package.json
-COPY packages ./packages
-RUN pnpm install --frozen-lockfile
-
-FROM base AS build
-COPY --from=deps /app/node_modules ./node_modules
-# Isolated linker keeps dependencies per workspace package
-COPY --from=deps /app/apps/wsBackend/node_modules ./apps/wsBackend/node_modules
-# Keep the pnpm shim available in this stage
-COPY --from=deps /usr/local/share/pnpm /usr/local/share/pnpm
 COPY . .
-RUN pnpm --filter wsbackend exec tsc -b apps/wsBackend/tsconfig.json
-RUN pnpm prune --prod
+RUN turbo prune --scope=wsbackend --docker
 
-FROM node:20-bookworm-slim AS runner
+# Building stage - installs dependencies and builds the app
+FROM base AS builder
+WORKDIR /app
+COPY --from=pruner /app/out/json/ .
+COPY --from=pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+RUN pnpm install --frozen-lockfile
+COPY --from=pruner /app/out/full/ .
+COPY turbo.json turbo.json
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN pnpm --filter db prisma generate
+RUN pnpm turbo run build --filter=wsbackend...
+
+# Production image
+FROM base AS runner
 WORKDIR /app
 ENV NODE_ENV=production
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/apps/wsBackend/dist ./apps/wsBackend/dist
+ENV HOST=0.0.0.0
+ENV PORT=8002
+COPY --from=builder /app/apps/wsBackend/dist ./apps/wsBackend/dist
 COPY apps/wsBackend/package.json ./apps/wsBackend/package.json
-
 EXPOSE 8002
 CMD ["node", "apps/wsBackend/dist/index.js"]
 
