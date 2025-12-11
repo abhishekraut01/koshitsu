@@ -1,5 +1,6 @@
 import React from 'react';
 import { Youtube, Twitter, Instagram, Linkedin, MessageSquare } from 'lucide-react';
+import Image from 'next/image';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -24,7 +25,13 @@ export function Footer() {
 
           {/* Left: Logo & Brand */}
           <div className="flex items-center gap-2 justify-start order-1 md:order-1">
-            <MessageSquare className="h-6 w-6 text-foreground" strokeWidth={2.5} />
+            <Image
+              src="/koshitsu-logo-new.png"
+              alt="Koshitsu Logo"
+              width={40}
+              height={40}
+              className="object-contain"
+            />
             <h3 className="text-xl font-bold tracking-tight">
               Koshitsu
             </h3>
@@ -72,7 +79,8 @@ export function Footer() {
       {/* Giant Background Text - FIXED: Now visible in both light and dark modes */}
       <div className="relative w-full flex justify-center items-end mt-16 md:mt-0 select-none pointer-events-none overflow-hidden h-32 md:h-64 lg:h-80">
         {/* Light mode: dark gray text, Dark mode: light gray text */}
-        <h1 className="absolute bottom-[-5%] text-[clamp(6rem,18vw,24rem)] font-black leading-none tracking-tighter text-neutral-300 dark:text-neutral-800">
+        <h1 className="absolute bottom-[-5%] text-[clamp(6rem,18vw,24rem)] text-transparent bg-clip-text font-black leading-none tracking-tighter bg-gradient-to-b from-[#8c8c8c] via-[#2b2b2b] to-[#010101] opacity-90">
+
           KOSHITSU
         </h1>
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-background to-transparent pointer-events-none z-10"></div>

@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { Quote } from 'lucide-react';
 
 const testimonials = {
   left: [
@@ -10,21 +11,21 @@ const testimonials = {
       role: "Product Manager",
       company: "TechCorp",
       content: "Koshitsu has revolutionized how our team communicates. The privacy features give us peace of mind for sensitive discussions.",
-      avatar: "https://api.dicebear.com/7.x/avataaars/png?seed=Sarah"
+      avatar: "https://i.pravatar.cc/150?img=1"
     },
     {
       name: "Michael Chen",
       role: "Security Analyst",
       company: "CyberSafe",
       content: "Finally, a chat platform that takes privacy seriously. End-to-end encryption without compromising on user experience.",
-      avatar: "https://api.dicebear.com/7.x/avataaars/png?seed=Michael"
+      avatar: "https://i.pravatar.cc/150?img=12"
     },
     {
       name: "Emily Rodriguez",
       role: "Startup Founder",
       company: "InnovateLab",
       content: "The ephemeral rooms are perfect for our quick team huddles. No data retention means no worries about information leaks.",
-      avatar: "https://api.dicebear.com/7.x/avataaars/png?seed=Emily"
+      avatar: "https://i.pravatar.cc/150?img=5"
     },
   ],
   middle: [
@@ -33,21 +34,21 @@ const testimonials = {
       role: "CTO",
       company: "DataFlow",
       content: "We've tried many chat solutions, but Koshitsu's privacy-first approach is exactly what we needed. The group features are incredibly intuitive and the interface is clean.",
-      avatar: "https://api.dicebear.com/7.x/avataaars/png?seed=David"
+      avatar: "https://i.pravatar.cc/150?img=13"
     },
     {
       name: "Lisa Thompson",
       role: "Legal Counsel",
       company: "LawFirm Partners",
       content: "Client confidentiality is paramount in our work. Koshitsu's zero data retention policy makes it the only choice for attorney-client communications. Highly recommended!",
-      avatar: "https://api.dicebear.com/7.x/avataaars/png?seed=Lisa"
+      avatar: "https://i.pravatar.cc/150?img=9"
     },
     {
       name: "James Wilson",
       role: "Healthcare Administrator",
       company: "MediCare Solutions",
       content: "HIPAA compliance made easy. Koshitsu allows our medical team to communicate securely without worrying about data breaches or unauthorized access.",
-      avatar: "https://api.dicebear.com/7.x/avataaars/png?seed=James"
+      avatar: "https://i.pravatar.cc/150?img=14"
     },
   ],
   right: [
@@ -56,21 +57,21 @@ const testimonials = {
       role: "Privacy Advocate",
       company: "Digital Rights Org",
       content: "This is what the future of messaging should look like. No phone numbers, no tracking, just pure communication.",
-      avatar: "https://api.dicebear.com/7.x/avataaars/png?seed=Amanda"
+      avatar: "https://i.pravatar.cc/150?img=10"
     },
     {
       name: "Robert Martinez",
       role: "Journalist",
       company: "NewsDaily",
       content: "Protecting sources is critical. Koshitsu's ephemeral rooms ensure sensitive conversations truly disappear without a trace.",
-      avatar: "https://api.dicebear.com/7.x/avataaars/png?seed=Robert"
+      avatar: "https://i.pravatar.cc/150?img=15"
     },
     {
       name: "Karen Singh",
       role: "Remote Team Lead",
       company: "GlobalTech Inc",
       content: "Managing a distributed team across time zones is challenging. Koshitsu makes secure communication effortless and reliable.",
-      avatar: "https://api.dicebear.com/7.x/avataaars/png?seed=Sarah"
+      avatar: "https://i.pravatar.cc/150?img=16"
     },
   ],
 };
@@ -86,40 +87,59 @@ type Testimonial = {
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
     <motion.div
-      whileHover={{ 
-        scale: 1, 
-        boxShadow: "0 20px 60px rgba(59, 130, 246, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)"
-      }}
-      transition={{ duration: 0.3 }}
-      className="bg-gradient-to-br from-secondary/80 to-muted/80 backdrop-blur-xl rounded-2xl p-6 border border-border hover:border-blue-500/30 transition-all duration-300 shadow-xl relative overflow-hidden group"
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="relative bg-background rounded-2xl p-8 border border-border hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 group"
     >
-      {/* Subtle gradient overlay on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-      
+      {/* Quote Icon */}
+      <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
+        <Quote className="w-16 h-16 text-primary" strokeWidth={1.5} />
+      </div>
+
+      {/* Card Content */}
       <div className="relative z-10">
-        <p className="text-foreground/80 text-[15px] leading-relaxed mb-6">
-          {testimonial.content}
-        </p>
-        <div className="flex items-start gap-3 pt-4 border-t border-border">
-          <Image 
-            src={testimonial.avatar}
-            alt={testimonial.name}
-            width={40}
-            height={40}
-            className="w-11 h-11 rounded-full bg-muted ring-2 ring-border group-hover:ring-blue-500/40 transition-all duration-300 shrink-0"
-          />
+        {/* Testimonial Text with Quote Marks */}
+        <div className="mb-6">
+          <Quote className="w-8 h-8 text-primary/60 mb-4" strokeWidth={2} />
+          <p className="text-foreground text-base leading-relaxed italic">
+            `{testimonial.content}`
+          </p>
+        </div>
+
+        {/* Divider */}
+        <div className="w-30 h-0.5 bg-linear-to-r from-primary to-transparent mb-6"></div>
+
+        {/* Author Info */}
+        <div className="flex items-center gap-4">
+          <div className="relative">
+            <Image 
+              src={testimonial.avatar}
+              alt={testimonial.name}
+              width={56}
+              height={56}
+              className="w-14 h-14 rounded-full object-cover ring-2 ring-border group-hover:ring-primary/40 transition-all duration-300"
+              unoptimized
+            />
+            {/* Small accent dot */}
+            <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-primary rounded-full border-2 border-background"></div>
+          </div>
 
           <div className="flex-1 min-w-0">
-            <p className="font-semibold text-foreground text-sm mb-1">{testimonial.name}</p>
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              {testimonial.role} at <span className="text-foreground/70">{testimonial.company}</span>
+            <h4 className="font-semibold text-foreground text-base mb-0.5">
+              {testimonial.name}
+            </h4>
+            <p className="text-sm text-muted-foreground">
+              {testimonial.role}
+            </p>
+            <p className="text-xs text-muted-foreground/70 mt-0.5">
+              {testimonial.company}
             </p>
           </div>
         </div>
       </div>
 
-      {/* Corner accent */}
-      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      {/* Subtle gradient background effect */}
+      <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none"></div>
     </motion.div>
   );
 }
@@ -152,7 +172,7 @@ export default function TestimonialsSection() {
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background opacity-50"></div>
+      <div className="absolute inset-0 bg-linear-to-b from-background via-muted/30 to-background opacity-50"></div>
       
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
@@ -164,14 +184,14 @@ export default function TestimonialsSection() {
             transition={{ duration: 0.5 }}
             className="inline-block mb-4"
           >
-            <span className="px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-yellow-600 dark:text-yellow-400 text-sm font-medium">
+            <span className="px-4 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium">
               Testimonials
             </span>
           </motion.div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-b from-foreground to-foreground/60 bg-clip-text text-transparent">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-linear-to-b from-foreground to-foreground/60 bg-clip-text text-transparent">
             Some love from
           </h2>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-b from-foreground to-foreground/60 bg-clip-text text-transparent">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-linear-to-b from-foreground to-foreground/60 bg-clip-text text-transparent">
             our users
           </h2>
         </motion.div>
@@ -209,10 +229,10 @@ export default function TestimonialsSection() {
           </motion.div>
 
           {/* Top Gradient Fade */}
-          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background to-transparent pointer-events-none z-10"></div>
+          <div className="absolute inset-x-0 top-0 h-24 bg-linear-to-b from-background to-transparent pointer-events-none z-10"></div>
           
           {/* Bottom Gradient Fade */}
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none z-10"></div>
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-background to-transparent pointer-events-none z-10"></div>
         </div>
       </div>
 
