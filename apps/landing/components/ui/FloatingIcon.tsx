@@ -83,7 +83,7 @@ export function FloatingIcon({
 // Demo
 export default function FloatingIconDemo() {
   return (
-    <div className="relative w-full h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 overflow-hidden">
+    <div className="relative w-full h-screen bg-linear-to-br from-gray-900 via-blue-900 to-purple-900 overflow-hidden">
       <div className="max-w-4xl mx-auto h-full flex flex-col items-center justify-center gap-4 px-4 relative z-10">
         <h1 className="text-5xl font-bold text-white text-center mb-4">
           Generic FloatingIcon Component

@@ -56,7 +56,7 @@ export function Features() {
               Features
             </span>
           </motion.div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-b from-white to-neutral-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-linear-to-b from-white to-neutral-400 bg-clip-text text-transparent">
             Two Ways to Chat
           </h2>
           <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
@@ -73,7 +73,7 @@ export function Features() {
             className="group relative p-8 rounded-3xl bg-linear-to-br from-neutral-900/90 to-neutral-950/90 border border-neutral-800 hover:border-blue-500/30 transition-all duration-500 overflow-hidden"
           >
             {/* Gradient overlay on hover */}
-            <div className="absolute inset-0 bg-linear-to-br from-blue-500/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute inset-0 bg-linear-to-br from-blue-500/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
             {/* Animated corner accent */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"></div>

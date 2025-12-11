@@ -1,0 +1,43 @@
+FROM node:20-bookworm-slim AS base
+
+WORKDIR /app
+ENV PNPM_HOME="/usr/local/share/pnpm"
+ENV PATH="${PNPM_HOME}:${PATH}"
+RUN corepack enable
+
+FROM base AS deps
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY apps/web/package.json ./apps/web/package.json
+COPY apps/httpBackend/package.json ./apps/httpBackend/package.json
+COPY apps/wsBackend/package.json ./apps/wsBackend/package.json
+COPY apps/landing/package.json ./apps/landing/package.json
+COPY packages ./packages
+RUN pnpm install --frozen-lockfile
+
+FROM base AS build
+COPY --from=deps /app/node_modules ./node_modules
+# Isolated linker keeps dependencies per workspace package
+COPY --from=deps /app/apps/web/node_modules ./apps/web/node_modules
+# Keep the pnpm shim available in this stage
+COPY --from=deps /usr/local/share/pnpm /usr/local/share/pnpm
+COPY . .
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN pnpm --filter web build
+RUN pnpm prune --prod
+
+FROM node:20-bookworm-slim AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+ENV PNPM_HOME="/usr/local/share/pnpm"
+ENV PATH="${PNPM_HOME}:${PATH}"
+RUN corepack enable
+
+COPY pnpm-workspace.yaml pnpm-lock.yaml package.json ./
+COPY apps/web/package.json ./apps/web/package.json
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/apps/web/.next ./apps/web/.next
+COPY --from=build /app/apps/web/public ./apps/web/public
+
+EXPOSE 3000
+CMD ["pnpm", "--filter", "web", "start", "--", "-H", "0.0.0.0", "-p", "3000"]
+
