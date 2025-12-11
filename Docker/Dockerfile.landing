@@ -27,9 +27,13 @@ RUN pnpm turbo run build --filter=landing...
 # Production image
 FROM base AS runner
 WORKDIR /app
+
+ENV HOST=0.0.0.0
+ENV PORT=3002
+
 COPY --from=builder /app/apps/landing/.next/standalone ./
 COPY --from=builder /app/apps/landing/.next/static ./apps/landing/.next/static
 COPY --from=builder /app/apps/landing/public ./apps/landing/public
 EXPOSE 3002
-CMD ["node", "server.js"]
+CMD ["node", "apps/landing/server.js"]
 
