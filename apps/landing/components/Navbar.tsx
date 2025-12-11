@@ -11,7 +11,7 @@ import {
   MobileNavHeader,
   MobileNavToggle,
   MobileNavMenu,
-} from '@/components/ui/Resizable-navbar';
+} from './ui/resizable-navbar';
 import Image from 'next/image';
 
 export function KoshitsuNavbar() {

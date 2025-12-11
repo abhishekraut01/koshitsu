@@ -28,7 +28,7 @@ const itemVariants = {
 
 export function Features() {
   return (
-    <div className="relative py-24 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden">
+    <div className="relative py-24 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden">
       {/* Background gradients */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
@@ -70,7 +70,7 @@ export function Features() {
             variants={itemVariants}
             whileHover={{ y: -8 }}
             transition={{ duration: 0.3 }}
-            className="group relative p-8 rounded-3xl bg-linear-to-br from-neutral-900/90 to-neutral-950/90 border border-neutral-800 hover:border-blue-500/30 transition-all duration-500 overflow-hidden"
+            className="group relative p-8 rounded-3xl bg-linear-to-br from-neutral-900/90 to-neutral-950 border border-neutral-800 hover:border-blue-500/30 transition-all duration-500 overflow-hidden"
           >
             {/* Gradient overlay on hover */}
             <div className="absolute inset-0 bg-linear-to-br from-blue-500/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

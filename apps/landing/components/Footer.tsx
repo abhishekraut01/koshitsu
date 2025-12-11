@@ -22,7 +22,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative bg-linear-to-b from-neutral-950 via-black to-black border-t border-neutral-900 overflow-hidden">
+    <footer className="relative bg-background overflow-hidden">
       {/* Subtle animated background */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl"></div>

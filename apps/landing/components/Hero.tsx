@@ -3,10 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Users, Lock, MessageSquare, MessageCircle, Send, Shield } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-// Import your FloatingIcon component
-// import { FloatingIcon } from './FloatingIcon';
-
-// For demo purposes, including it here
 function FloatingIcon({
   children,
   position = {},

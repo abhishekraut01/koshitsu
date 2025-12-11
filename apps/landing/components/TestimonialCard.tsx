@@ -150,7 +150,7 @@ function TestimonialColumn({ items, direction = 'down' }: { items: Testimonial[]
 
 export default function TestimonialsSection() {
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden">
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-linear-to-b from-neutral-950 via-black to-neutral-950 opacity-50"></div>
       
