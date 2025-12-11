@@ -70,3 +70,27 @@ body {
   }
 }
 
+/* Add this to your existing globals.css */
+
+/* Prevent horizontal scroll properly */
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+/* Ensure all sections respect viewport width */
+section {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Fix for elements with absolute positioning */
+.absolute {
+  max-width: 100vw;
+}
