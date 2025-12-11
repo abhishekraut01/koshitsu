@@ -91,35 +91,35 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         boxShadow: "0 20px 60px rgba(59, 130, 246, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.1)"
       }}
       transition={{ duration: 0.3 }}
-      className="bg-linear-to-br from-neutral-900/90 to-neutral-950/90 backdrop-blur-xl rounded-2xl p-6 border border-neutral-800/50 hover:border-blue-900/30 transition-all duration-300 shadow-xl relative overflow-hidden group"
+      className="bg-gradient-to-br from-secondary/80 to-muted/80 backdrop-blur-xl rounded-2xl p-6 border border-border hover:border-blue-500/30 transition-all duration-300 shadow-xl relative overflow-hidden group"
     >
       {/* Subtle gradient overlay on hover */}
-      <div className="absolute inset-0 bg-linear-to-br from-blue-500/2 to-purple-500/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       
       <div className="relative z-10">
-        <p className="text-neutral-300 text-[15px] leading-relaxed mb-6">
+        <p className="text-foreground/80 text-[15px] leading-relaxed mb-6">
           {testimonial.content}
         </p>
-        <div className="flex items-start gap-3 pt-4 border-t border-neutral-800/50">
-            <Image 
+        <div className="flex items-start gap-3 pt-4 border-t border-border">
+          <Image 
             src={testimonial.avatar}
             alt={testimonial.name}
             width={40}
             height={40}
-            className="w-11 h-11 rounded-full bg-neutral-800 ring-2 ring-neutral-700/50 group-hover:ring-blue-900/40 transition-all duration-300 shrink-0"
+            className="w-11 h-11 rounded-full bg-muted ring-2 ring-border group-hover:ring-blue-500/40 transition-all duration-300 shrink-0"
           />
 
           <div className="flex-1 min-w-0">
-            <p className="font-semibold text-white text-sm mb-1">{testimonial.name}</p>
-            <p className="text-xs text-neutral-400 leading-relaxed">
-              {testimonial.role} at <span className="text-neutral-300">{testimonial.company}</span>
+            <p className="font-semibold text-foreground text-sm mb-1">{testimonial.name}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              {testimonial.role} at <span className="text-foreground/70">{testimonial.company}</span>
             </p>
           </div>
         </div>
       </div>
 
       {/* Corner accent */}
-      <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
     </motion.div>
   );
 }
@@ -152,11 +152,11 @@ export default function TestimonialsSection() {
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-linear-to-b from-neutral-950 via-black to-neutral-950 opacity-50"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background opacity-50"></div>
       
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div  className="text-center mb-16">
+        <motion.div className="text-center mb-16">
           <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
@@ -164,14 +164,14 @@ export default function TestimonialsSection() {
             transition={{ duration: 0.5 }}
             className="inline-block mb-4"
           >
-            <span className="px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-yellow-400 text-sm font-medium">
-                Testimonials
+            <span className="px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-yellow-600 dark:text-yellow-400 text-sm font-medium">
+              Testimonials
             </span>
           </motion.div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold  bg-linear-to-b from-white to-neutral-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-b from-foreground to-foreground/60 bg-clip-text text-transparent">
             Some love from
           </h2>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-linear-to-b from-white to-neutral-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-b from-foreground to-foreground/60 bg-clip-text text-transparent">
             our users
           </h2>
         </motion.div>
@@ -209,10 +209,10 @@ export default function TestimonialsSection() {
           </motion.div>
 
           {/* Top Gradient Fade */}
-          <div className="absolute inset-x-0 top-0 h-24 bg-linear-to-b from-black to-transparent pointer-events-none z-10"></div>
+          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background to-transparent pointer-events-none z-10"></div>
           
           {/* Bottom Gradient Fade */}
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-black to-transparent pointer-events-none z-10"></div>
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none z-10"></div>
         </div>
       </div>
 
