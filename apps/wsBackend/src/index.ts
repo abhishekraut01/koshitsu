@@ -3,6 +3,7 @@ import checkAuth from './utils/checkAuth.js';
 import handleLeaveRoom from './services/leaveRoomService.js';
 import { safeSend } from './utils/safeSend.js';
 import handlers from './utils/handlers.js';
+import { incomingMessageSchema } from './schemas/wsSchema.js';
 
 const PORT = process.env.PORT || "8002"
 
@@ -12,6 +13,7 @@ wss.on("connection", (socket: WebSocket, req) => {
     try {
         // Authenticate user (your jwt validation)
         const userId = checkAuth(socket, req);
+
         if (!userId) {
             socket.close(1008, "Unauthorized");
             return;
@@ -31,24 +33,30 @@ wss.on("connection", (socket: WebSocket, req) => {
                 });
             }
 
-            if (!data?.type) {
+            // Validate message with Zod
+            const parsed = incomingMessageSchema.safeParse(data);
+
+            if (!parsed.success) {
                 return safeSend(socket, {
                     type: "error",
-                    message: "Missing message type",
+                    message: "Invalid message format",
+                    issues: parsed.error.issues,
                 });
             }
+            
+            const payload = parsed.data;
 
-            const handler = handlers[data.type];
+            const handler = handlers[payload.type];
 
             if (!handler) {
                 return safeSend(socket, {
                     type: "error",
-                    message: `Unknown message type ${data.type}`,
+                    message: `Unknown message type ${payload.type}`,
                 });
             }
 
             try {
-                handler(socket, userId, data);
+                handler(socket, userId, payload);
             } catch (err) {
                 console.error("Handler error:", err);
                 safeSend(socket, {
