@@ -2,8 +2,9 @@ import { WebSocketServer, WebSocket } from 'ws'
 import checkAuth from './utils/checkAuth.js';
 import handleLeaveRoom from './services/leaveRoomService.js';
 import { safeSend } from './utils/safeSend.js';
-import handlers from './utils/handlers.js';
-import { incomingMessageSchema } from './schemas/wsSchema.js';
+import { validateMessage } from './middleware/validateMessage.js';
+import { rateLimit } from './middleware/ratelimmiter.js';
+import { routeMessage } from './router/wsRouter.js';
 
 const PORT = process.env.PORT || "8002"
 
@@ -22,31 +23,13 @@ wss.on("connection", (socket: WebSocket, req) => {
         console.log(`User connected: ${userId}`);
 
         socket.on("message", (raw) => {
-            let data: any;
 
-            try {
-                data = JSON.parse(raw.toString());
-            } catch (err) {
-                return safeSend(socket, {
-                    type: "error",
-                    message: "Invalid JSON format",
-                });
-            }
+            const payload = validateMessage(raw.toString(), socket);
+            if (!payload) return;
 
-            // Validate message with Zod
-            const parsed = incomingMessageSchema.safeParse(data);
+            if (!rateLimit(userId, socket)) return;
 
-            if (!parsed.success) {
-                return safeSend(socket, {
-                    type: "error",
-                    message: "Invalid message format",
-                    issues: parsed.error.issues,
-                });
-            }
-            
-            const payload = parsed.data;
-
-            const handler = handlers[payload.type];
+            const handler = routeMessage(payload.type);
 
             if (!handler) {
                 return safeSend(socket, {
