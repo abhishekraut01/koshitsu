@@ -13,8 +13,8 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "@repo/typescript-config": "workspace:*",
         "@repo/db": "workspace:*",
+        "@repo/typescript-config": "workspace:*",
         "@repo/utils": "workspace:*",
         "@repo/validation": "workspace:*",
         "@types/bcrypt": "^6.0.0",
@@ -24,9 +24,10 @@
     },
     "dependencies": {
         "@types/ws": "^8.18.1",
-        "ws": "^8.18.3",
         "bcrypt": "^6.0.0",
         "dotenv": "^17.2.3",
-        "jsonwebtoken": "^9.0.3"
+        "jsonwebtoken": "^9.0.3",
+        "ws": "^8.18.3",
+        "zod": "^4.1.13"
     }
 }
