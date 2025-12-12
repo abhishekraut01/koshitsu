@@ -107,12 +107,12 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         </div>
 
         {/* Divider */}
-        <div className="w-30 h-0.5 bg-linear-to-r from-primary to-transparent mb-6"></div>
+        <div className="w-12 h-0.5 bg-linear-to-r from-primary to-transparent mb-6"></div>
 
         {/* Author Info */}
         <div className="flex items-center gap-4">
           <div className="relative">
-            <Image 
+            <Image
               src={testimonial.avatar}
               alt={testimonial.name}
               width={56}
@@ -146,7 +146,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
 function TestimonialColumn({ items, direction = 'down' }: { items: Testimonial[]; direction?: 'up' | 'down' }) {
   const duplicatedItems = [...items, ...items];
-  
+
   return (
     <div className="relative h-[600px] overflow-hidden mask-gradient">
       <motion.div
@@ -169,11 +169,14 @@ function TestimonialColumn({ items, direction = 'down' }: { items: Testimonial[]
 }
 
 export default function TestimonialsSection() {
+  // Combine all testimonials for mobile view
+  const allTestimonials = [...testimonials.left, ...testimonials.middle, ...testimonials.right];
+
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-background overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-linear-to-b from-background via-muted/30 to-background opacity-50"></div>
-      
+
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
         <motion.div className="text-center mb-16">
@@ -196,8 +199,26 @@ export default function TestimonialsSection() {
           </h2>
         </motion.div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+        {/* Mobile View - Single Column */}
+        <div className="block md:hidden relative">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <TestimonialColumn items={allTestimonials} direction="down" />
+          </motion.div>
+
+          {/* Top Gradient Fade */}
+          <div className="absolute inset-x-0 top-0 h-24 bg-linear-to-b from-background to-transparent pointer-events-none z-10"></div>
+
+          {/* Bottom Gradient Fade */}
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-background to-transparent pointer-events-none z-10"></div>
+        </div>
+
+        {/* Desktop View - Three Columns */}
+        <div className="hidden md:grid md:grid-cols-3 gap-6 relative">
           {/* Left Column - Scrolls Up */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -230,7 +251,7 @@ export default function TestimonialsSection() {
 
           {/* Top Gradient Fade */}
           <div className="absolute inset-x-0 top-0 h-24 bg-linear-to-b from-background to-transparent pointer-events-none z-10"></div>
-          
+
           {/* Bottom Gradient Fade */}
           <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-background to-transparent pointer-events-none z-10"></div>
         </div>

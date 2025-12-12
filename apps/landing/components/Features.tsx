@@ -50,7 +50,7 @@ export function Features() {
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-block mb-4"
+            className="inline-block mb-4 mt-3"
           >
             <span className="px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-600 dark:text-blue-400 text-sm font-medium">
               Features
@@ -197,7 +197,7 @@ export function Features() {
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-block mb-4"
+            className="inline-block mb-4 mt-3"
           >
             <span className="px-4 py-1.5 bg-green-500/10 border border-green-500/20 rounded-full text-green-600 dark:text-green-400 text-sm font-medium">
               Security

@@ -147,7 +147,7 @@ export default function Hero() {
       </FloatingIcon>
 
       <FloatingIcon
-        position={{ bottom: '120px', left: '20px' }}
+        position={{ bottom: '140px', left: '20px' }}
         parallaxStrength={0.03}
         rotation={-10}
         floatDuration={3.5}

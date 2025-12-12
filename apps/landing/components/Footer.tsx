@@ -1,15 +1,15 @@
 import React from 'react';
-import { Youtube, Twitter, Instagram, Linkedin, MessageSquare } from 'lucide-react';
+import { Github, Twitter, Instagram, Linkedin } from 'lucide-react';
 import Image from 'next/image';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Youtube, href: 'https://youtube.com/@koshitsu', label: 'YouTube' },
-    { icon: Twitter, href: 'https://x.com/koshitsu', label: 'Twitter' },
-    { icon: Instagram, href: 'https://instagram.com/koshitsu', label: 'Instagram' },
-    { icon: Linkedin, href: 'https://linkedin.com/company/koshitsu', label: 'LinkedIn' },
+    { icon: Github, href: 'https://github.com/devsyncin', label: 'GitHub' },
+    { icon: Twitter, href: 'https://x.com/devsyncin', label: 'Twitter' },
+    { icon: Instagram, href: 'https://www.instagram.com/devsync.in/', label: 'Instagram' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/devsync-in/', label: 'LinkedIn' },
   ];
 
   const links = [
@@ -79,11 +79,11 @@ export function Footer() {
       {/* Giant Background Text - FIXED: Now visible in both light and dark modes */}
       <div className="relative w-full flex justify-center items-end mt-16 md:mt-0 select-none pointer-events-none overflow-hidden h-32 md:h-64 lg:h-80">
         {/* Light mode: dark gray text, Dark mode: light gray text */}
-        <h1 className="absolute bottom-[-5%] text-[clamp(6rem,18vw,24rem)] text-transparent bg-clip-text font-black leading-none tracking-tighter bg-gradient-to-b from-[#8c8c8c] via-[#2b2b2b] to-[#010101] opacity-90">
+        <h1 className="absolute bottom-[-5%] text-[clamp(6rem,18vw,24rem)] text-transparent bg-clip-text font-black leading-none tracking-tighter bg-linear-to-b from-[#8c8c8c] via-[#2b2b2b] to-[#010101] opacity-90">
 
           KOSHITSU
         </h1>
-        <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-background to-transparent pointer-events-none z-10"></div>
+        <div className="absolute inset-x-0 bottom-0 h-44 bg-linear-to-t from-background to-transparent pointer-events-none z-10"></div>
       </div>
     </footer>
   );
